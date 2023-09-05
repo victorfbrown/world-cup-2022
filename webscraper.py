@@ -16,7 +16,7 @@ day = str(today.day)
 scope = ['https://www.googleapis.com/auth/spreadsheets',
          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name(
-    '../credentials/client_secret.json', scope)
+    '../credentials/client_secret_personal.json', scope)
 client = gspread.authorize(creds)
 alphabet = list(string.ascii_uppercase)
 num = list(range(1, 27))
@@ -39,6 +39,7 @@ list_scores = []
 for match in all_matches:
     indiv_dict = {}
     score = match.text
+    score = score.strip(' (a.e.t)')
     both_scores = score.split("–")
     a = match.a
     text_descriptor = a.get('href')
